@@ -1,0 +1,24 @@
+{
+  "name": "webpack-dotenv-to-exports",
+  "version": "1.0.0",
+  "description": "Convert .env files to js exports",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "webpack-sources": "^3.2.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aminoeditor/webpack-dotenv-to-exports-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aminoeditor/webpack-dotenv-to-exports-plugin/issues"
+  },
+  "homepage": "https://github.com/aminoeditor/webpack-dotenv-to-exports-plugin#readme"
+}
