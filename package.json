@@ -1,5 +1,5 @@
 {
-  "name": "webpack-dotenv-to-exports",
+  "name": "@aminoeditor/webpack-dotenv-to-exports",
   "version": "1.0.1",
   "description": "Convert .env files to js exports",
   "main": "index.js",
@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
+    "webpack": "^5.74.0",
     "webpack-sources": "^3.2.3"
   },
   "devDependencies": {},
