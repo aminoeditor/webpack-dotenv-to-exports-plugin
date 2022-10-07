@@ -12,30 +12,37 @@ class DotenvToExportsPlugin {
 
     apply (compiler) {
         const pluginName = this.constructor.name;
+		const { env, filter, transformKey, transformValue } = this.config;
         compiler.hooks.thisCompilation.tap(pluginName, (compilation) => {
-            const defaults = dotenv.parse(fs.readFileSync('./.env'));
-            let env = {}
-            if (this.config.env) {
+            const defaultsFile = dotenv.parse(fs.readFileSync('./.env'));
+            let envFile = {}
+            if (env) {
                 try {
-                env = dotenv.parse(fs.readFileSync(`./.env.${this.config.env}`));
+                	envFile = dotenv.parse(fs.readFileSync(`./.env.${env}`));
                 } catch (e) {
-                    console.log('No config file for env:', this.config.env);
+                    console.log('No config file for env:', env);
                 }
-            }
-            const combined = {
-                ...defaults,
-                ...env
+			}
+            const combinedFile = {
+                ...defaultsFile,
+                ...envFile
             };
             const activeKeys = [];
             // format to exports
             let exportFile = "";
-            for (let key in combined) {
-                if (key.match("VUE_APP_")) {
-                    const val = combined[key];
-                    key = key.replace("VUE_APP_", "");
-                    activeKeys.push(key);
-                    exportFile += `const ${key} = "${val}";\n`;
-                }
+            for (let key in combinedFile) {
+				let val = combinedFile[key];
+				if (filter && !filter(key, val)) {
+					continue;
+				}
+				if (transformKey) {
+					key = transformKey(key);
+				}
+				if (transformValue) {
+					val = transformValue(val);
+				}
+				activeKeys.push(key);
+				exportFile += `const ${key} = "${val}";\n`;
             }
             exportFile += `\nexport { ${activeKeys.join(', ')} }`;
             compilation.emitAsset(this.config.filename, new RawSource(exportFile));
