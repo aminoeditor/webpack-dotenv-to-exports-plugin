@@ -1,6 +1,6 @@
 {
   "name": "@aminoeditor/webpack-dotenv-to-exports",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Convert .env files to js exports",
   "main": "index.js",
   "scripts": {
