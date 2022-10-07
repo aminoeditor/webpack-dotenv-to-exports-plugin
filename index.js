@@ -32,7 +32,7 @@ class DotenvToExportsPlugin {
 			let exportFile = "";
 			for (let key in combinedFile) {
 				let val = combinedFile[key];
-				if (filter && !filter(key, val)) {
+				if (filter && !filter({ key, val })) {
 					continue;
 				}
 				if (transformKey) {
