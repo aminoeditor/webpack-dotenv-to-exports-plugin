@@ -1,6 +1,6 @@
 {
   "name": "webpack-dotenv-to-exports",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convert .env files to js exports",
   "main": "index.js",
   "scripts": {
